@@ -73,26 +73,26 @@ func main() {
 	fmt.Println(response)
 }
 
-func CreatePayLink(request PaymentRequest) (PaymentResponse, error) {
+func CreatePayLink(request PaymentRequest) (*PaymentResponse, error) {
 	envs := getEnvs()
 	fmt.Println("Creating paylink with request:", envs)
 
 	payloadBytes, err := json.Marshal(request)
 	if err != nil {
 		fmt.Println("Error marshalling request body:", err)
-		return PaymentResponse{}, err
+		return nil, err
 	}
 
 	req, err := http.NewRequest("POST", envs.apiUrl, bytes.NewBuffer(payloadBytes))
 	if err != nil {
 		fmt.Println("Error creating request:", err)
-		return PaymentResponse{}, err
+		return nil, err
 	}
 
 	signature, err := generateSignature(string(payloadBytes), envs.apiUrl, envs.secret)
 	if err != nil {
 		fmt.Println("Error generating signature:", err)
-		return PaymentResponse{}, err
+		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("IK-APPID", envs.appId)
@@ -102,13 +102,13 @@ func CreatePayLink(request PaymentRequest) (PaymentResponse, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error making request:", err)
-		return PaymentResponse{}, err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
-	var result PaymentResponse
-	json.NewDecoder(resp.Body).Decode(&result)
-	return result, nil
+	var response PaymentResponse
+	json.NewDecoder(resp.Body).Decode(&response)
+	return &response, nil
 }
 
 // Get all needed environment Variables
