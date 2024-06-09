@@ -1,0 +1,4 @@
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/spatialcurrent/go-stringify v0.0.0-20220308153339-0abf902cfee4 h1:9Pg1iV1PATa6xYxQAlSGsRYwHh1OEnp7Lphaf+MV6bs=
+github.com/spatialcurrent/go-stringify v0.0.0-20220308153339-0abf902cfee4/go.mod h1:QOkIEQRq/x7eI60dZf97Z1kCCICTXEoRCcHPbtq0kIQ=
