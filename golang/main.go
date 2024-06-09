@@ -67,15 +67,15 @@ func main() {
 
 	response, err := CreatePayLink(requestBody)
 	if err != nil {
-		fmt.Println("Error creating paylink:", err)
+		fmt.Println("Error creating paylink: ", err)
 		return
 	}
-	fmt.Println(response)
+	fmt.Println("Paylink created successfully: ", response.PaylinkUrl)
 }
 
 func CreatePayLink(request PaymentRequest) (*PaymentResponse, error) {
 	envs := getEnvs()
-	fmt.Println("Creating paylink with request:", envs)
+	fmt.Println("Creating paylink with request:", request)
 
 	payloadBytes, err := json.Marshal(request)
 	if err != nil {
