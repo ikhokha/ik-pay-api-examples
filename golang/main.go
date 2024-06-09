@@ -46,21 +46,6 @@ type PaymentResponse struct {
 	ExternalTransactionID string `json:"externalTransactionID"`
 }
 
-func jsStringEscape(str string) string {
-	var escapedStr string
-	for _, char := range str {
-		switch char {
-		case '\\', '"', '\'':
-			escapedStr += "\\" + string(char)
-		case '\u0000':
-			escapedStr += "\\0"
-		default:
-			escapedStr += string(char)
-		}
-	}
-	return escapedStr
-}
-
 func main() {
 	requestBody := PaymentRequest{
 		EntityID:              "MyEntityID1234",
@@ -155,8 +140,24 @@ func generateSignature(body string, endpoint string, secret string) (string, err
 		return "", fmt.Errorf("no basePath in url")
 	}
 
-	sanitizedBody := jsStringEscape(basePath + body)
+	sanitizedBody := jsonEscape(basePath + body)
 	mac := hmac.New(sha256.New, []byte(secret))
 	mac.Write([]byte(sanitizedBody))
 	return hex.EncodeToString(mac.Sum(nil)), nil
+}
+
+// Escape the JSON string
+func jsonEscape(payload string) string {
+	var escaped string
+	for _, char := range payload {
+		switch char {
+		case '\\', '"', '\'':
+			escaped += "\\" + string(char)
+		case '\u0000':
+			escaped += "\\0"
+		default:
+			escaped += string(char)
+		}
+	}
+	return escaped
 }
