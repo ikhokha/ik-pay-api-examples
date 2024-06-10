@@ -1,7 +1,5 @@
-## iK Pay API Examples
 
-
-### /golang
+### Go example
 
 The iK Pay API examples in Golang.
 
