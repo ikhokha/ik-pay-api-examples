@@ -78,8 +78,8 @@ const request = {
 };
 
 const apiEndPoint = "https://api.ikhokha.com/public-api/v1/api/payment";
-const ApplicationId = "IK0EOZUDOY9J81LP1RHYJEOI26F7O64M";
-const ApplicationKey = "IHftHRXiFVUzICsNqG7QYpIg0fB7W0XZ";
+const ApplicationId = "Your Application Id Here";
+const ApplicationKey = "Your Application Key Here";
 
 const payLink = new PayLink({
   apiEndPoint,
