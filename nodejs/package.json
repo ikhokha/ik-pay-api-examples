@@ -1,0 +1,17 @@
+{
+  "name": "iK-Pay-API",
+  "version": "1.0.0",
+  "description": "Ikhokha Pay API using Node.js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "crypto-js": "^4.2.0"
+  }
+}
